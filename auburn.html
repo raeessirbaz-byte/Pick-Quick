@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <style>
     :root{--red:#C8102E;--red-dark:#a00d24;--cream:#FFF8F0;--charcoal:#1A1A1A;--yellow:#F5A623;--body:#1C1C1C;--muted:#666666;--border:#E8E0D8;--white:#FFFFFF;--nav-h:72px;}
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
@@ -67,6 +66,10 @@
     .loc-info-val{font-size:16px;font-weight:600;color:var(--white);line-height:1.45;}
     .loc-info-val a{color:var(--yellow);}
     .loc-hero-ctas{display:flex;gap:12px;flex-wrap:wrap;}
+    .loc-hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:2;padding:80px 0;}
+    .loc-hero-photo{border-radius:24px;overflow:hidden;height:460px;box-shadow:0 32px 80px rgba(0,0,0,.55);}
+    .loc-hero-photo img{width:100%;height:100%;object-fit:cover;}
+    @media(max-width:860px){.loc-hero-inner{grid-template-columns:1fr;}.loc-hero-photo{display:none;}}
     .hours-strip{background:var(--red);padding:0;}
     .hours-inner{display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none;}
     .hours-inner::-webkit-scrollbar{display:none;}
@@ -200,10 +203,10 @@
   </nav>
 
   <section class="loc-hero">
-    <div class="loc-hero-bg"></div>
     <div class="loc-hero-overlay"></div>
     <div class="container">
-      <div class="loc-hero-content" data-aos="fade-up">
+      <div class="loc-hero-inner">
+      <div class="loc-hero-content" data-motion="fade-up">
         <div class="loc-badge">★ Serving Auburn Since 2011</div>
         <h1 class="loc-name">Auburn</h1>
         <p class="loc-since">Serving grilled burgers, fresh fries &amp; creamy milkshakes since 2011.</p>
@@ -225,6 +228,10 @@
           <a href="https://order.toasttab.com/online/locations/08e786aa-6170-4d02-8eec-603dbb551366/default" target="_blank" class="btn btn-red" style="font-size:15px;padding:16px 34px;">🍔 ORDER ONLINE</a>
           <a href="https://maps.google.com/?q=1132+Auburn+Way+North+Auburn+WA+98002" target="_blank" class="btn btn-ghost" style="font-size:15px;padding:16px 34px;">📍 GET DIRECTIONS</a>
         </div>
+      </div>
+      <div class="loc-hero-photo" data-motion="fade-left">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=900&q=90" alt="Pick-Quick Auburn fresh burger" loading="eager" />
+      </div>
       </div>
     </div>
   </section>
@@ -288,12 +295,12 @@
     <div class="container">
 
       <div class="menu-cat" id="burgers">
-        <div class="cat-header" data-aos="fade-up">
+        <div class="cat-header" data-motion="fade-up">
           <div class="cat-icon">🍔</div>
           <div><div class="cat-title">Burgers</div><div class="cat-subtitle">Kraft American Cheese · Fresh Beef · Made to Order</div></div>
         </div>
         <div class="items-grid">
-          <div class="menu-item" data-aos="fade-up">
+          <div class="menu-item" data-motion="fade-up">
             <div class="item-top"><div class="item-name">Deluxe Cheeseburger</div><span class="item-badge">Signature</span></div>
             <p class="item-desc">Kraft American Cheese, Leaves of Lettuce, Slices of Tomato &amp; Onion, Pickles &amp; PICK-QUICK Sauce</p>
             <div class="price-table">
@@ -303,7 +310,7 @@
             </div>
             <a href="https://order.toasttab.com/online/locations/08e786aa-6170-4d02-8eec-603dbb551366/default" target="_blank" class="item-cta">Order Now</a>
           </div>
-          <div class="menu-item" data-aos="fade-up" data-aos-delay="60">
+          <div class="menu-item" data-motion="fade-up">
             <div class="item-top"><div class="item-name">Deluxe Burger</div></div>
             <p class="item-desc">Leaves of Lettuce, Slices of Tomato &amp; Onion, Pickles &amp; PICK-QUICK Sauce</p>
             <div class="price-table">
@@ -313,7 +320,7 @@
             </div>
             <a href="https://order.toasttab.com/online/locations/08e786aa-6170-4d02-8eec-603dbb551366/default" target="_blank" class="item-cta">Order Now</a>
           </div>
-          <div class="menu-item" data-aos="fade-up" data-aos-delay="120">
+          <div class="menu-item" data-motion="fade-up">
             <div class="item-top"><div class="item-name">Original Cheeseburger</div></div>
             <p class="item-desc">Kraft American Cheese, Ketchup, Mustard &amp; Pickles</p>
             <div class="price-table">
@@ -323,7 +330,7 @@
             </div>
             <a href="https://order.toasttab.com/online/locations/08e786aa-6170-4d02-8eec-603dbb551366/default" target="_blank" class="item-cta">Order Now</a>
           </div>
-          <div class="menu-item" data-aos="fade-up">
+          <div class="menu-item" data-motion="fade-up">
             <div class="item-top"><div class="item-name">Original Burger</div></div>
             <p class="item-desc">Ketchup, Mustard &amp; Pickle</p>
             <div class="price-table">
@@ -339,12 +346,12 @@
       <div class="section-divider"></div>
 
       <div class="menu-cat" id="hotdogs">
-        <div class="cat-header" data-aos="fade-up">
+        <div class="cat-header" data-motion="fade-up">
           <div class="cat-icon">🌭</div>
           <div><div class="cat-title">Hot Dogs</div></div>
         </div>
         <div class="items-grid">
-          <div class="menu-item" data-aos="fade-up">
+          <div class="menu-item" data-motion="fade-up">
             <div class="item-top"><div class="item-name">Deluxe Hot Dog</div><span class="item-badge">Loaded</span></div>
             <p class="item-desc">Lettuce, Tomato, Onion &amp; PICK-QUICK Sauce</p>
             <div class="price-table">
@@ -353,7 +360,7 @@
             </div>
             <a href="https://order.toasttab.com/online/locations/08e786aa-6170-4d02-8eec-603dbb551366/default" target="_blank" class="item-cta">Order Now</a>
           </div>
-          <div class="menu-item" data-aos="fade-up" data-aos-delay="60">
+          <div class="menu-item" data-motion="fade-up">
             <div class="item-top"><div class="item-name">Original Hot Dog</div></div>
             <p class="item-desc">Mustard — simple and classic</p>
             <div class="price-table">
@@ -368,24 +375,24 @@
       <div class="section-divider"></div>
 
       <div class="menu-cat" id="fries">
-        <div class="cat-header" data-aos="fade-up">
+        <div class="cat-header" data-motion="fade-up">
           <div class="cat-icon">🍟</div>
           <div><div class="cat-title">Fresh Fries</div><div class="cat-subtitle">Hand Cut from Fresh No. 1 Potatoes</div></div>
         </div>
         <div class="items-grid">
-          <div class="menu-item" data-aos="fade-up">
+          <div class="menu-item" data-motion="fade-up">
             <div class="item-top"><div class="item-name">Fresh Fries</div><span class="item-badge">Local Potatoes</span></div>
             <p class="item-desc">Hand Cut from Fresh No. 1 Potatoes</p>
             <div class="price-single">$3.89</div>
             <a href="https://order.toasttab.com/online/locations/08e786aa-6170-4d02-8eec-603dbb551366/default" target="_blank" class="item-cta">Order Now</a>
           </div>
-          <div class="menu-item" data-aos="fade-up" data-aos-delay="60">
+          <div class="menu-item" data-motion="fade-up">
             <div class="item-top"><div class="item-name">Chili Fries</div></div>
             <p class="item-desc">Cheddar Cheese &amp; Onions</p>
             <div class="price-single">$6.59</div>
             <a href="https://order.toasttab.com/online/locations/08e786aa-6170-4d02-8eec-603dbb551366/default" target="_blank" class="item-cta">Order Now</a>
           </div>
-          <div class="menu-item" data-aos="fade-up" data-aos-delay="120">
+          <div class="menu-item" data-motion="fade-up">
             <div class="item-top"><div class="item-name">Fry Sauces</div></div>
             <p class="item-desc">PICK-QUICK Sauce, Ranch &amp; Tartar</p>
             <div class="price-single">$0.65</div>
@@ -397,12 +404,12 @@
       <div class="section-divider"></div>
 
       <div class="menu-cat" id="shakes">
-        <div class="cat-header" data-aos="fade-up">
+        <div class="cat-header" data-motion="fade-up">
           <div class="cat-icon">🥤</div>
           <div><div class="cat-title">Shakes &amp; Malts</div><div class="cat-subtitle">Real Ice Cream · Made Fresh</div></div>
         </div>
         <div class="items-grid">
-          <div class="menu-item" data-aos="fade-up">
+          <div class="menu-item" data-motion="fade-up">
             <div class="item-top"><div class="item-name">Milk Shake</div><span class="item-badge">Real Ice Cream</span></div>
             <p class="item-desc">Vanilla, Chocolate, Strawberry, Banana &amp; Root Beer</p>
             <div class="price-table">
@@ -411,7 +418,7 @@
             </div>
             <a href="https://order.toasttab.com/online/locations/08e786aa-6170-4d02-8eec-603dbb551366/default" target="_blank" class="item-cta">Order Now</a>
           </div>
-          <div class="menu-item" data-aos="fade-up" data-aos-delay="60">
+          <div class="menu-item" data-motion="fade-up">
             <div class="item-top"><div class="item-name">Malt</div></div>
             <p class="item-desc">Vanilla, Chocolate, Strawberry, Banana &amp; Root Beer</p>
             <div class="price-table">
@@ -421,7 +428,7 @@
             <a href="https://order.toasttab.com/online/locations/08e786aa-6170-4d02-8eec-603dbb551366/default" target="_blank" class="item-cta">Order Now</a>
           </div>
         </div>
-        <div class="flavors-note" data-aos="fade-up">
+        <div class="flavors-note" data-motion="fade-up">
           <strong>Deluxe Flavors</strong> <span style="color:var(--red);font-family:'Oswald',sans-serif;font-size:17px;font-weight:700;"> +$0.79</span>
           <p>Almond Roca · Cold Brew Coffee · Mocha · Caramel · Hot Fudge · Oreo Cookie · Mountain Blackberry · Reese's Peanut Butter</p>
         </div>
@@ -430,22 +437,22 @@
       <div class="section-divider"></div>
 
       <div class="menu-cat" id="icecream">
-        <div class="cat-header" data-aos="fade-up">
+        <div class="cat-header" data-motion="fade-up">
           <div class="cat-icon">🍦</div>
           <div><div class="cat-title">Ice Cream</div></div>
         </div>
         <div class="items-grid">
-          <div class="menu-item" data-aos="fade-up">
+          <div class="menu-item" data-motion="fade-up">
             <div class="item-top"><div class="item-name">Cone</div></div>
             <div class="price-single">$2.59</div>
             <a href="https://order.toasttab.com/online/locations/08e786aa-6170-4d02-8eec-603dbb551366/default" target="_blank" class="item-cta">Order Now</a>
           </div>
-          <div class="menu-item" data-aos="fade-up" data-aos-delay="60">
+          <div class="menu-item" data-motion="fade-up">
             <div class="item-top"><div class="item-name">Hot Fudge Sundae</div></div>
             <div class="price-single">$4.65</div>
             <a href="https://order.toasttab.com/online/locations/08e786aa-6170-4d02-8eec-603dbb551366/default" target="_blank" class="item-cta">Order Now</a>
           </div>
-          <div class="menu-item" data-aos="fade-up" data-aos-delay="120">
+          <div class="menu-item" data-motion="fade-up">
             <div class="item-top"><div class="item-name">Float</div></div>
             <div class="price-table">
               <div class="price-pill"><span class="price-size">16 oz</span><span class="price-val">$3.85</span></div>
@@ -459,12 +466,12 @@
       <div class="section-divider"></div>
 
       <div class="menu-cat" id="drinks">
-        <div class="cat-header" data-aos="fade-up">
+        <div class="cat-header" data-motion="fade-up">
           <div class="cat-icon">🥤</div>
           <div><div class="cat-title">Drinks</div></div>
         </div>
         <div class="items-grid">
-          <div class="menu-item" data-aos="fade-up">
+          <div class="menu-item" data-motion="fade-up">
             <div class="item-top"><div class="item-name">Soft Drinks</div></div>
             <p class="item-desc">Coke, Diet Coke, Cherry Coke, Barq's Root Beer, Mr. Pibb, Sprite, Green River &amp; Lemonade</p>
             <div class="price-table">
@@ -474,7 +481,7 @@
             </div>
             <a href="https://order.toasttab.com/online/locations/08e786aa-6170-4d02-8eec-603dbb551366/default" target="_blank" class="item-cta">Order Now</a>
           </div>
-          <div class="menu-item" data-aos="fade-up" data-aos-delay="60">
+          <div class="menu-item" data-motion="fade-up">
             <div class="item-top"><div class="item-name">Milk</div></div>
             <div class="price-table">
               <div class="price-pill"><span class="price-size">12 oz</span><span class="price-val">$1.89</span></div>
@@ -482,7 +489,7 @@
             </div>
             <a href="https://order.toasttab.com/online/locations/08e786aa-6170-4d02-8eec-603dbb551366/default" target="_blank" class="item-cta">Order Now</a>
           </div>
-          <div class="menu-item" data-aos="fade-up" data-aos-delay="120">
+          <div class="menu-item" data-motion="fade-up">
             <div class="item-top"><div class="item-name">Bottled Water</div></div>
             <div class="price-single">$1.55</div>
             <a href="https://order.toasttab.com/online/locations/08e786aa-6170-4d02-8eec-603dbb551366/default" target="_blank" class="item-cta">Order Now</a>
@@ -493,17 +500,17 @@
       <div class="section-divider"></div>
 
       <div class="menu-cat" id="extras">
-        <div class="cat-header" data-aos="fade-up">
+        <div class="cat-header" data-motion="fade-up">
           <div class="cat-icon">➕</div>
           <div><div class="cat-title">Extras &amp; Add-ons</div></div>
         </div>
         <div class="extras-grid">
-          <div class="extra-item" data-aos="fade-up"><div class="extra-name">Bacon</div><div class="extra-price">$1.79</div></div>
-          <div class="extra-item" data-aos="fade-up" data-aos-delay="40"><div class="extra-name">Kraft American Cheese</div><div class="extra-price">$0.49</div></div>
-          <div class="extra-item" data-aos="fade-up" data-aos-delay="80"><div class="extra-name">Tillamook Cheddar</div><div class="extra-price">$0.69</div></div>
-          <div class="extra-item" data-aos="fade-up" data-aos-delay="120"><div class="extra-name">Chili Topping</div><div class="extra-price">$1.79</div></div>
-          <div class="extra-item" data-aos="fade-up" data-aos-delay="160"><div class="extra-name">Chili Cup 8oz</div><div class="extra-price">$4.65</div></div>
-          <div class="extra-item" data-aos="fade-up" data-aos-delay="200"><div class="extra-name">Extra Patty</div><div class="extra-price">$1.95</div></div>
+          <div class="extra-item" data-motion="fade-up"><div class="extra-name">Bacon</div><div class="extra-price">$1.79</div></div>
+          <div class="extra-item" data-motion="fade-up"><div class="extra-name">Kraft American Cheese</div><div class="extra-price">$0.49</div></div>
+          <div class="extra-item" data-motion="fade-up"><div class="extra-name">Tillamook Cheddar</div><div class="extra-price">$0.69</div></div>
+          <div class="extra-item" data-motion="fade-up"><div class="extra-name">Chili Topping</div><div class="extra-price">$1.79</div></div>
+          <div class="extra-item" data-motion="fade-up"><div class="extra-name">Chili Cup 8oz</div><div class="extra-price">$4.65</div></div>
+          <div class="extra-item" data-motion="fade-up"><div class="extra-name">Extra Patty</div><div class="extra-price">$1.95</div></div>
         </div>
       </div>
 
@@ -512,7 +519,7 @@
 
   <div class="order-banner">
     <div class="container">
-      <div class="order-banner-inner" data-aos="fade-up">
+      <div class="order-banner-inner" data-motion="fade-up">
         <h2>READY TO ORDER?</h2>
         <p>We don't make it until you order it — so let's get started.</p>
         <div class="order-banner-btns">
@@ -563,9 +570,26 @@
     <a href="https://order.toasttab.com/online/locations/08e786aa-6170-4d02-8eec-603dbb551366/default" target="_blank">🍔 ORDER ONLINE</a>
   </div>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.js"></script>
   <script>
-    AOS.init({duration:680,easing:'ease-out-quart',once:true,offset:60});
+    (function(){
+      const { animate, inView } = Motion;
+      document.querySelectorAll('[data-motion]').forEach(el => {
+        const dir = el.getAttribute('data-motion');
+        const fromX = dir === 'fade-left' ? 44 : dir === 'fade-right' ? -44 : 0;
+        const fromY = dir === 'fade-up' ? 44 : 0;
+        animate(el, { opacity: 0, x: fromX, y: fromY }, { duration: 0 });
+        inView(el, () => {
+          animate(el, { opacity: 1, x: 0, y: 0 }, { duration: 0.82, easing: [0.22, 1, 0.36, 1] });
+        }, { amount: 0.12 });
+      });
+      document.querySelectorAll('.menu-item').forEach(el => {
+        animate(el, { opacity: 0, y: 28 }, { duration: 0 });
+        inView(el, () => {
+          animate(el, { opacity: 1, y: 0 }, { duration: 0.6, easing: [0.22, 1, 0.36, 1] });
+        }, { amount: 0.15 });
+      });
+    })();
     const days=['sun','mon','tue','wed','thu','fri','sat'];
     const today=days[new Date().getDay()];
     const el=document.getElementById('day-'+today);
