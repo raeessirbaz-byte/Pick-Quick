@@ -26,8 +26,8 @@ export default function Menus() {
       <div style={{ backgroundColor: 'var(--bg-card)', borderBottom: '1px solid var(--border-light)' }}>
         <header className="header container" style={{ position: 'relative', color: 'var(--text-main)' }}>
           <div className="nav-inner">
-            <nav className="nav-links" style={{ color: 'var(--text-muted)' }}>
-              <a href="/">Home</a>
+            <nav className="nav-links" style={{ color: 'var(--text-muted)', alignItems: 'center' }}>
+              <a href="/" style={{ fontWeight: '700', color: 'var(--accent-rust)' }}>Home</a>
               <a href="/menus">Menu</a>
             </nav>
             <div className="logo" style={{ color: 'var(--accent-rust)' }}>PICK-QUICK</div>
