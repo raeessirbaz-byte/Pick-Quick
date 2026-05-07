@@ -348,6 +348,27 @@
     .mob-sticky a { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 15px; border-radius: 14px; background: var(--red); color: var(--white); font-weight: 700; font-size: 15px; letter-spacing: .07em; text-transform: uppercase; }
 
     /* =============================================
+       ITEM IMAGES
+    ============================================= */
+    .item-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--cream);
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+    .item-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+    .menu-item:hover .item-img img { transform: scale(1.05); }
+
+    /* =============================================
        RESPONSIVE
     ============================================= */
     @media (max-width: 1024px) {
@@ -1385,6 +1406,85 @@
       setTimeout(() => { m.style.display = 'none'; }, 300);
     }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMob(); });
+
+    /* ── Menu item image injection ── */
+    (function () {
+      const BASE = 'https://images.unsplash.com/photo-';
+      const Q    = '?w=600&q=82&auto=format&fit=crop';
+
+      // Specific item-name → photo ID mapping
+      const NAME_MAP = {
+        'classic fife cheeseburger' : '1568901346375-23c9450c58cd',
+        'classic fife burger'       : '1550547660-d9450f859349',
+        'deluxe cheeseburger'       : '1586816001966-08cfe0c3b4f9',
+        'deluxe burger'             : '1565299507177-b0ac66763828',
+        'original cheeseburger'     : '1571091718767-18b5b1457add',
+        'original burger'           : '1558030006-f6778ba8b4f4',
+        'long hot dog'              : '1619096252214-ef06c45683e3',
+        'deluxe hot dog'            : '1619096252214-ef06c45683e3',
+        'original hot dog'          : '1584308518503-aebb87dbecf2',
+        'grilled cheese'            : '1528736235302-52922df5c122',
+        'fresh french fries'        : '1573080496219-bb080dd4f877',
+        'fresh fries'               : '1573080496219-bb080dd4f877',
+        'chili fries'               : '1576107232684-1279f55e1ef3',
+        'chili fritos'              : '1576107232684-1279f55e1ef3',
+        'chips'                     : '1566478555645-43b9a0af0e4b',
+        'fry sauces'                : '1534938665420-4193effeacc4',
+        'milk shake'                : '1553361371-9b22f78e8b1d',
+        'milkshake'                 : '1553361371-9b22f78e8b1d',
+        'malt'                      : '1541658016709-82763003e61a',
+        'soft freeze cone'          : '1576506295286-5cda18df43e7',
+        'cone'                      : '1576506295286-5cda18df43e7',
+        'hot fudge sundae'          : '1497534446932-d2bcf5e30019',
+        'float'                     : '1536747890742-59b40d91a4e0',
+        'banana split'              : '1488900128323-21503983a07e',
+        'soft drinks'               : '1544145945-f90425340c7e',
+        'milk'                      : '1550583724-b7e2f9b2c2a2',
+        'bottled water'             : '1548839140-4c43cf4bf14f',
+      };
+
+      // Category fallbacks (round-robin)
+      const CAT_IMGS = {
+        burgers   : ['1568901346375-23c9450c58cd','1550547660-d9450f859349','1565299507177-b0ac66763828','1571091718767-18b5b1457add'],
+        hotdogs   : ['1619096252214-ef06c45683e3','1584308518503-aebb87dbecf2'],
+        sandwiches: ['1528736235302-52922df5c122'],
+        fries     : ['1573080496219-bb080dd4f877','1576107232684-1279f55e1ef3','1578926375605-eaf7559b1458'],
+        shakes    : ['1553361371-9b22f78e8b1d','1541658016709-82763003e61a'],
+        icecream  : ['1576506295286-5cda18df43e7','1497534446932-d2bcf5e30019','1536747890742-59b40d91a4e0','1488900128323-21503983a07e'],
+        drinks    : ['1544145945-f90425340c7e','1548839140-4c43cf4bf14f'],
+      };
+      const catIdx = {};
+
+      document.querySelectorAll('.menu-item').forEach(item => {
+        const nameEl = item.querySelector('.item-name');
+        if (!nameEl) return;
+        const name = nameEl.textContent.trim().toLowerCase();
+
+        // Determine category from nearest .menu-cat id
+        const catEl  = item.closest('.menu-cat');
+        const catId  = catEl ? catEl.id : '';
+        const catKey = Object.keys(CAT_IMGS).find(k => catId.includes(k)) || null;
+
+        let photoId = NAME_MAP[name];
+        if (!photoId && catKey) {
+          const pool = CAT_IMGS[catKey];
+          if (!catIdx[catId]) catIdx[catId] = 0;
+          photoId = pool[catIdx[catId] % pool.length];
+          catIdx[catId]++;
+        }
+        if (!photoId) return;
+
+        const wrap = document.createElement('div');
+        wrap.className = 'item-img';
+        const img = document.createElement('img');
+        img.src     = BASE + photoId + Q;
+        img.alt     = nameEl.textContent.trim();
+        img.loading = 'lazy';
+        img.onerror = () => { wrap.style.display = 'none'; };
+        wrap.appendChild(img);
+        item.prepend(wrap);
+      });
+    })();
   </script>
 </body>
 </html>

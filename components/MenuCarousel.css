@@ -1,0 +1,139 @@
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 950px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 100px 0;
+}
+
+.carousel-track {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-card {
+  position: absolute;
+  width: 420px;
+  height: 580px;
+  border-radius: 60px;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.card-bg {
+  width: 100%;
+  height: 100%;
+  border-radius: 60px;
+  padding: 32px; /* Perfect uniform padding on all sides */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Symmetrical top/bottom spacing */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  position: relative;
+  overflow: visible;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.carousel-card.center .card-bg {
+  box-shadow: 0 40px 80px rgba(0,0,0,0.12);
+}
+
+.product-img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 40px;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
+  z-index: 2;
+  transition: transform 0.4s ease;
+}
+
+.carousel-card.center .product-img {
+  transform: scale(1.05);
+  filter: drop-shadow(0 30px 40px rgba(0,0,0,0.25));
+}
+
+.category {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.product-name {
+  font-family: 'Epilogue', sans-serif;
+  font-size: 52px;
+  font-weight: 900;
+  margin-bottom: 12px;
+  text-align: center;
+  color: #1a1a1a;
+  line-height: 1;
+}
+
+.details {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.6;
+  margin-bottom: 0; /* Ensures symmetric bottom gap with top padding */
+}
+
+.carousel-nav-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px; /* Consistent spacing rhythm */
+  margin-top: 60px;
+}
+
+.main-add-to-cart {
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  padding: 22px 72px;
+  border-radius: 100px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.main-add-to-cart:hover {
+  background: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .carousel-container {
+    height: 800px;
+  }
+  .carousel-card {
+    width: 320px;
+    height: 480px;
+  }
+  .product-name {
+    font-size: 36px;
+  }
+  .main-add-to-cart {
+    padding: 18px 48px;
+    font-size: 14px;
+  }
+}
